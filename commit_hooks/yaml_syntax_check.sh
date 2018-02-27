@@ -33,9 +33,10 @@ fi
 # Check YAML file syntax
 $ERRORS_ONLY || echo -e "$(tput setaf 6)Checking yaml syntax for $module_path...$(tput sgr0)"
 $LINTER $1 > "$error_msg"
-if [ $? -eq 127 ]; then
+RC=$?
+if [ $RC -eq 127 ]; then
   echo -e "$(tput setaf 1)No linter found, please install a linter like yaml-lint oder yamllint$(tput sgr0)"
-elif [ $? -ne 0 ]; then
+elif [ $RC -ne 0 ]; then
   sed -e "s/^/$(tput setaf 1)/" -e "s/$/$(tput sgr0)/" "$error_msg"
   syntax_errors=$((syntax_errors + 1))
   echo -e "$(tput setaf 1)Error: yaml syntax error in $module_path (see above)$(tput sgr0)"

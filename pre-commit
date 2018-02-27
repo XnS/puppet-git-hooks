@@ -10,7 +10,7 @@ hook_dir="$(dirname "$0")"
 hook_symlink="$(readlink "$0")"
 
 # Manage arguments passed to script
-while getopts ":a" o; do 
+while getopts ":a" o; do
     case "${o}" in
         a)
             CHECK_ALL=true;;
